@@ -193,6 +193,8 @@ class DataTable {
 		//grab the model instance
 		$model = $this->config->getDataModel();
 
+		$querySql = str_replace('*', $model->getKeyName(), $querySql);
+
 		//then wrap the inner table and perform the count
 		$sql = "SELECT COUNT({$model->getKeyName()}) AS aggregate FROM ({$querySql}) AS agg";
 
