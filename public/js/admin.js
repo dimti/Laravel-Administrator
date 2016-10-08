@@ -737,10 +737,10 @@
 
 				//the direction depends on the field
 				if (field == this.sortOptions.field())
-					//reverse the direction
+				//reverse the direction
 					this.sortOptions.direction( (this.sortOptions.direction() == 'asc') ? 'desc' : 'asc' );
 				else
-					//set the direction to asc
+				//set the direction to asc
 					this.sortOptions.direction('asc');
 
 				//update the field
@@ -1069,6 +1069,9 @@
 		prepareEditFields: function()
 		{
 			var self = this,
+				rows = [],
+				row = [],
+				isOpenedFirstCol = false,
 				fields = [];
 
 			$.each(adminData.edit_fields, function(ind, field)
@@ -1091,9 +1094,21 @@
 				field.field_id = 'edit_field_' + ind;
 
 				fields.push(field);
+
+				row.push(field);
+
+				if (!isOpenedFirstCol && typeof(field.column) !== 'undefined' && field.column == 'first') {
+					isOpenedFirstCol = true;
+				}
+
+				if ( !isOpenedFirstCol || (typeof(field.column) !== 'undefined' && field.column == 'last') ) {
+					isOpenedFirstCol = false;
+					rows.push(row);
+					row = [];
+				}
 			});
 
-			return fields;
+			return rows;
 		},
 
 		/**
@@ -1142,7 +1157,7 @@
 						self.viewModel[el.field_name + '_autocomplete'] = [];
 					$.each(el.options, function(x, option)
 					{
-						self.viewModel[el.field_name + '_autocomplete'][option.id] = option;	
+						self.viewModel[el.field_name + '_autocomplete'][option.id] = option;
 					});
 				}
 			});
@@ -1435,9 +1450,9 @@
 
 				//if the model name is present
 				if ('modelName' in state.data)
-					//if that model name isn't the current model name, we are updating the model
+				//if that model name isn't the current model name, we are updating the model
 					if (state.data.modelName !== self.viewModel.modelName())
-						//get the new model
+					//get the new model
 						self.viewModel.getNewModel(state.data);
 
 				//if the state data has an id field and if it's not the active item
@@ -1546,7 +1561,7 @@
 					if (! window.admin.dataTableScrollable)
 						window.admin.resizeDataTable();
 					else
-					window.admin.scrollDataTable();
+						window.admin.scrollDataTable();
 				}
 			}, 50);
 		},

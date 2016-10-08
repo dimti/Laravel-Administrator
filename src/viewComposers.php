@@ -132,4 +132,11 @@ View::composer(array('administrator::layouts.default'), function($view)
 	}
 
 	$view->js += array('page' => asset('packages/frozennode/administrator/js/page.js'));
+
+	$view->css += [
+		'semantic-reset' => asset('assets/semantic-ui/components/reset.min.css'),
+		'semantic-grid' => asset('assets/semantic-ui/components/grid.min.css'),
+		'semantic-form' => asset('assets/semantic-ui/components/form.min.css'),
+		'semantic-input' => asset('assets/semantic-ui/components/input.min.css'),
+	];
 });

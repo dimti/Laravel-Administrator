@@ -13,6 +13,10 @@ a{ text-decoration: none; }
 /*
 	Main Styling
 */
+html, body {
+	font-size: 14px;
+}
+
 #wrapper {
 	.oxygen;
 	font-size: 13px;
@@ -24,26 +28,28 @@ a{ text-decoration: none; }
 		line-height: 36px;
 	}
 
-	textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"],
-	input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"],
-	input[type="color"] {
-		.input;
-	}
+	.table_container {
+		textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"],
+		input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"],
+		input[type="color"] {
+			.input;
+		}
 
-	label {
-		display: block;
-		margin-bottom: 5px;
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
 	}
 }
 
 /* Fix for datetimepicker partially being covered by top menu*/
 
 #ui-datepicker-div {
-  margin-top: 40px !important;
-  z-index: 999 !important;
+	margin-top: 40px !important;
+	z-index: 999 !important;
 }
 #ui-timepicker-div dl dd {
-    margin: 0px 10px 10px 85px;
+	margin: 0px 10px 10px 85px;
 }
 
 /* common structure */
@@ -272,7 +278,7 @@ a{ text-decoration: none; }
 
 	label {
 		margin-bottom: 3px;
-		font-weight: bold;
+		//font-weight: bold;
 	}
 
 	div#sidebar {
@@ -587,7 +593,7 @@ a{ text-decoration: none; }
 		div.item_edit_container {
 			position: absolute;
 			top: 35px;
-			bottom: 0;
+			bottom: -35px;
 			right: 0;
 			width: 285px;
 			overflow: hidden;
@@ -598,8 +604,9 @@ a{ text-decoration: none; }
 
 			div.item_edit {
 				position: relative;
-				padding-top: 25px;
-				padding-left: 27px;
+				padding-top: 9px;
+				padding-left: 10px;
+				padding-right: 5px;
 				background: #D9E4EC;
 				min-height: 430px;
 				width: 258px;
