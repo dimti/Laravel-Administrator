@@ -152,6 +152,14 @@ class Config extends ConfigBase implements ConfigInterface {
 			{
 				$model->__unset($name);
 			}
+
+			//if this is a setter field, unset it
+			if ($field->getOption('mutator'))
+			{
+				$fieldName = $field->getOption('field_name');
+
+				$model->{$fieldName} = $model->getAttribute($fieldName);
+			}
 		}
 	}
 

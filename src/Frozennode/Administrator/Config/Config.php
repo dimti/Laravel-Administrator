@@ -173,6 +173,12 @@ abstract class Config {
 	{
 		if ($rules)
 		{
+			array_walk($data, function(&$item) {
+				if ($item === null) {
+					$item = '';
+				}
+			});
+
 			$this->customValidator->setData($data);
 			$this->customValidator->setRules($rules);
 			$this->customValidator->setCustomMessages($messages);
