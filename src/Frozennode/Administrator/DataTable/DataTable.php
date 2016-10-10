@@ -116,24 +116,24 @@ class DataTable {
 		//get things going by grouping the set
 		$table = $model->getTable();
 		$keyName = $model->getKeyName();
-		$query = $model->groupBy($table . '.' . $keyName);
+		$countQuery = $query = $model->groupBy($table . '.' . $keyName);
 
 		//get the Illuminate\Database\Query\Builder instance and set up the count query
 		$dbQuery = $query->getQuery();
-		$countQuery = $dbQuery->getConnection()->table($table)->groupBy($table . '.' . $keyName);
+//		$countQuery = $dbQuery->getConnection()->table($table)->groupBy($table . '.' . $keyName);
 
 		//run the supplied query filter for both queries if it was provided
-		$this->config->runQueryFilter($dbQuery);
+		$this->config->runQueryFilter($query);
 		$this->config->runQueryFilter($countQuery);
 
 		//set up initial array states for the selects
 		$selects = array($table.'.*');
 
 		//set the filters
-		$this->setFilters($filters, $dbQuery, $countQuery, $selects);
+		$this->setFilters($filters, $query, $countQuery, $selects);
 
 		//set the selects
-		$dbQuery->select($selects);
+		$query->select($selects);
 
 		//determines if the sort should have the table prefixed to it
 		$sortOnTable = true;
@@ -181,14 +181,14 @@ class DataTable {
 	/**
 	 * Performs the count query and returns info about the pages
 	 *
-	 * @param \Illuminate\Database\Query\Builder	$countQuery
+	 * @param \Illuminate\Database\Eloquent\Builder	$countQuery
 	 * @param string								$querySql
 	 * @param array									$queryBindings
 	 * @param int									$page
 	 *
 	 * @return array
 	 */
-	public function performCountQuery(QueryBuilder $countQuery, $querySql, $queryBindings, $page)
+	public function performCountQuery( $countQuery, $querySql, $queryBindings, $page)
 	{
 		//grab the model instance
 		$model = $this->config->getDataModel();
@@ -216,11 +216,11 @@ class DataTable {
 	 * Sets the query filters when getting the rows
 	 *
 	 * @param mixed									$filters
-	 * @param \Illuminate\Database\Query\Builder	$query
-	 * @param \Illuminate\Database\Query\Builder	$countQuery
+	 * @param \Illuminate\Database\Eloquent\Builder	$query
+	 * @param \Illuminate\Database\Eloquent\Builder	$countQuery
 	 * @param array									$selects
 	 */
-	public function setFilters($filters, QueryBuilder &$query, QueryBuilder &$countQuery, &$selects)
+	public function setFilters($filters, &$query, &$countQuery, &$selects)
 	{
 		//then we set the filters
 		if ($filters && is_array($filters))

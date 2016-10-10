@@ -52,12 +52,12 @@ class BelongsTo extends Relationship {
 	/**
 	 * Filters a query object with this item's data given a model
 	 *
-	 * @param \Illuminate\Database\Query\Builder	$query
+	 * @param \Illuminate\Database\Eloquent\Builder	$query
 	 * @param array									$selects
 	 *
 	 * @return void
 	 */
-	public function filterQuery(QueryBuilder &$query, &$selects = null)
+	public function filterQuery( &$query, &$selects = null)
 	{
 		//run the parent method
 		parent::filterQuery($query, $selects);

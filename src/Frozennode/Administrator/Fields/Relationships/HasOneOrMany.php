@@ -37,12 +37,12 @@ class HasOneOrMany extends Relationship {
 	/**
 	 * Filters a query object with this item's data (currently empty because there's no easy way to represent this)
 	 *
-	 * @param \Illuminate\Database\Query\Builder	$query
+	 * @param \Illuminate\Database\Eloquent\Builder	$query
 	 * @param array									$selects
 	 *
 	 * @return void
 	 */
-	public function filterQuery(QueryBuilder &$query, &$selects = null) {}
+	public function filterQuery( &$query, &$selects = null) {}
 
 	/**
 	 * For the moment this is an empty function until I can figure out a way to display HasOne and HasMany relationships on this model

@@ -541,11 +541,11 @@ class Config extends ConfigBase implements ConfigInterface {
 	/**
 	 * Runs a user-supplied query filter if one is supplied
 	 *
-	 * @param \Illuminate\Database\Query\Builder	$query
+	 * @param \Illuminate\Database\Eloquent\Builder	$query
 	 *
 	 * @return void
 	 */
-	public function runQueryFilter(\Illuminate\Database\Query\Builder &$query)
+	public function runQueryFilter(\Illuminate\Database\Eloquent\Builder &$query)
 	{
 		if ($filter = $this->getOption('query_filter'))
 		{

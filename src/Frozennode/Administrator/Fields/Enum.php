@@ -66,12 +66,12 @@ class Enum extends Field {
 	/**
 	 * Filters a query object
 	 *
-	 * @param \Illuminate\Database\Query\Builder	$query
+	 * @param \Illuminate\Database\Eloquent\Builder	$query
 	 * @param array									$selects
 	 *
 	 * @return void
 	 */
-	public function filterQuery(QueryBuilder &$query, &$selects = null)
+	public function filterQuery( &$query, &$selects = null)
 	{
 		//run the parent method
 		parent::filterQuery($query, $selects);
@@ -82,6 +82,11 @@ class Enum extends Field {
 			return;
 		}
 
-		$query->where($this->config->getDataModel()->getTable().'.'.$this->getOption('field_name'), '=', $this->getOption('value'));
+		if (@$this->getOption('scope')) {
+			$fieldName = $this->getOption('field_name');
+			$query->{$fieldName}($this->getOption('value'));
+		} else {
+			$query->where( $this->config->getDataModel()->getTable() . '.' . $this->getOption( 'field_name' ), '=', $this->getOption( 'value' ) );
+		}
 	}
 }
