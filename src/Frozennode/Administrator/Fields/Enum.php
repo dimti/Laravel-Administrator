@@ -26,11 +26,19 @@ class Enum extends Field {
 		$dataOptions = $options['options'];
 		$options['options'] = array();
 
+		if (!is_array($dataOptions) && $dataOptions) {
+			$model = $this->config->getDataModel();
+
+			$dataOptions = $model->{$dataOptions}();
+		}
+
+		$isAssocArr = !array_key_exists(0, $dataOptions);
+
 		//iterate over the options to create the options assoc array
 		foreach ($dataOptions as $val => $text)
 		{
 			$options['options'][] = array(
-				'id' => is_numeric($val) ? $text : $val,
+				'id' => $isAssocArr ? $val : $text,
 				'text' => $text,
 			);
 		}
