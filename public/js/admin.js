@@ -1063,11 +1063,11 @@
 
 				row.push(filter);
 
-				if (!isOpenedFirstCol && typeof(filter.column) !== 'undefined' && filter.column == 'first') {
+				if (!isOpenedFirstCol && typeof(filter.group) !== 'undefined' && filter.group == 'first') {
 					isOpenedFirstCol = true;
 				}
 
-				if ( !isOpenedFirstCol || (typeof(filter.column) !== 'undefined' && filter.column == 'last') ) {
+				if ( !isOpenedFirstCol || (typeof(filter.group) !== 'undefined' && filter.group == 'last') ) {
 					isOpenedFirstCol = false;
 					rows.push(row);
 					row = [];
@@ -1115,11 +1115,11 @@
 
 				row.push(field);
 
-				if (!isOpenedFirstCol && typeof(field.column) !== 'undefined' && field.column == 'first') {
+				if (!isOpenedFirstCol && typeof(field.group) !== 'undefined' && field.group == 'first') {
 					isOpenedFirstCol = true;
 				}
 
-				if ( !isOpenedFirstCol || (typeof(field.column) !== 'undefined' && field.column == 'last') ) {
+				if ( !isOpenedFirstCol || (typeof(field.group) !== 'undefined' && field.group == 'last') ) {
 					isOpenedFirstCol = false;
 					rows.push(row);
 					row = [];

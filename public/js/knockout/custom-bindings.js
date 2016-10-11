@@ -195,7 +195,7 @@
 						}
 						else if (data.type === 'filter')
 						{
-							data.selectedItems = admin.filtersViewModel.filters[parseInt(options.filterIndex)].value();
+							data.selectedItems = admin.filtersViewModel.filtersWithoutRows[parseInt(options.filterIndex)].value();
 						}
 
 						//figure out if there are any constraints that we need to send over
@@ -242,7 +242,7 @@
 
 					// If the select2 field has a default value,
 					// initSelection will be called before the admin object
-					// is correctly initialized. 
+					// is correctly initialized.
 					if (!val || typeof admin === 'undefined')
 						return callback(null);
 

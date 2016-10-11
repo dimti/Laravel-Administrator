@@ -1190,15 +1190,15 @@ body {
   text-shadow: #DDD 0 1px 0;
   margin-bottom: 15px;
 }
-#admin_page div#sidebar div.filters > div {
+#admin_page div#sidebar div.filters .field > div {
   margin-bottom: 10px;
   position: relative;
 }
-#admin_page div#sidebar div.filters > div select,
-#admin_page div#sidebar div.filters > div input[type=hidden] {
+#admin_page div#sidebar div.filters .field > div select,
+#admin_page div#sidebar div.filters .field > div input[type=hidden] {
   width: 225px;
 }
-#admin_page div#sidebar div.filters > div div.loader {
+#admin_page div#sidebar div.filters .field > div div.loader {
   position: absolute;
   top: 26px;
   left: -21px;
@@ -1209,26 +1209,29 @@ body {
   filter: alpha(opacity=30);
   opacity: 0.3;
 }
-#admin_page div#sidebar div.filters > div p.description {
+#admin_page div#sidebar div.filters .field > div p.description {
   width: 90%;
   margin: 0 0 7px 2px;
 }
-#admin_page div#sidebar div.filters > div p.description_below {
+#admin_page div#sidebar div.filters .field > div p.description_below {
   width: 90%;
   margin: 2px 0 0 2px;
 }
-#admin_page div#sidebar div.filters > div.min_max input[type=text] {
+#admin_page div#sidebar div.filters .field > div.min_max label {
+  display: block;
+}
+#admin_page div#sidebar div.filters .field > div.min_max input[type=text] {
   width: 87px;
 }
-#admin_page div#sidebar div.filters > div.min_max span.symbol {
+#admin_page div#sidebar div.filters .field > div.min_max span.symbol {
   position: absolute;
   top: 27px;
   left: -15px;
 }
-#admin_page div#sidebar div.filters > div.min_max.datetime input[type=text] {
+#admin_page div#sidebar div.filters .field > div.min_max.datetime input[type=text] {
   font-size: 11px;
 }
-#admin_page div#sidebar div.filters > div.color div.color_preview {
+#admin_page div#sidebar div.filters .field > div.color div.color_preview {
   height: 8px;
   margin: 0 33px 0 1px;
   -moz-box-shadow: 0px 1px 2px #aaa;

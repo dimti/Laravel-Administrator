@@ -202,14 +202,24 @@ abstract class Field {
 		//if this field has a min/max range, set it
 		if ($this->getOption('min_max'))
 		{
-			if ($minValue = $this->getOption('min_value'))
-			{
-				$query->where($model->getTable().'.'.$this->getOption('field_name'), '>=', $minValue);
-			}
+			$minValue = $this->getOption( 'min_value' );
 
-			if ($maxValue = $this->getOption('max_value'))
-			{
-				$query->where($model->getTable().'.'.$this->getOption('field_name'), '<=', $maxValue);
+			$maxValue = $this->getOption( 'max_value' );
+
+			if (@$this->getOption('scope') && ($minValue || $maxValue)) {
+				$fieldName = $this->getOption('field_name');
+
+				$fieldName = camel_case($fieldName);
+
+				$query->{$fieldName}($minValue, $maxValue);
+			} else {
+				if ( $minValue ) {
+					$query->where( $model->getTable() . '.' . $this->getOption( 'field_name' ), '>=', $minValue );
+				}
+
+				if ( $maxValue ) {
+					$query->where( $model->getTable() . '.' . $this->getOption( 'field_name' ), '<=', $maxValue );
+				}
 			}
 		}
 	}

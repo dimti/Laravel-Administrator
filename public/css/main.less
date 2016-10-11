@@ -294,58 +294,64 @@ html, body {
 		}
 
 		div.filters {
-			> div {
-				margin-bottom: 10px;
-				position: relative;
+			.field {
+				> div {
+					margin-bottom: 10px;
+					position: relative;
 
-				select, input[type=hidden] {
-					width: 225px;
-				}
-
-				div.loader {
-					position: absolute;
-					top: 26px;
-					left: -21px;
-					width: 16px;
-					height: 16px;
-					background: url(../img/loader.gif) no-repeat;
-					.opacity(0.3);
-				}
-
-				p.description {
-					width: 90%;
-					margin: 0 0 7px 2px;
-				}
-
-				p.description_below {
-					width: 90%;
-					margin: 2px 0 0 2px;
-				}
-
-				&.min_max {
-
-					input[type=text] {
-						width: 87px;
+					select, input[type=hidden] {
+						width: 225px;
 					}
 
-					span.symbol {
+					div.loader {
 						position: absolute;
-						top: 27px;
-						left: -15px;
+						top: 26px;
+						left: -21px;
+						width: 16px;
+						height: 16px;
+						background: url(../img/loader.gif) no-repeat;
+						.opacity(0.3);
 					}
 
-					&.datetime {
+					p.description {
+						width: 90%;
+						margin: 0 0 7px 2px;
+					}
+
+					p.description_below {
+						width: 90%;
+						margin: 2px 0 0 2px;
+					}
+
+					&.min_max {
+
+						label  {
+							display: block;
+						}
+
 						input[type=text] {
-							font-size: 11px;
+							width: 87px;
+						}
+
+						span.symbol {
+							position: absolute;
+							top: 27px;
+							left: -15px;
+						}
+
+						&.datetime {
+							input[type=text] {
+								font-size: 11px;
+							}
 						}
 					}
-				}
 
-				&.color {
-					div.color_preview {
-						height: 8px;
-						margin: 0 33px 0 1px;
-						.boxShadow(0px, 1px, 2px, #aaa);
+					&.color {
+						div.color_preview {
+							height: 8px;
+							margin: 0 33px 0 1px;
+							.boxShadow(0px, 1px, 2px, #aaa);
+						}
 					}
 				}
 			}
