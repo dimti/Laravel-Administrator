@@ -92,6 +92,7 @@ class Enum extends Field {
 
 		if (@$this->getOption('scope')) {
 			$fieldName = $this->getOption('field_name');
+			$fieldName = camel_case($fieldName);
 			$query->{$fieldName}($this->getOption('value'));
 		} else {
 			$query->where( $this->config->getDataModel()->getTable() . '.' . $this->getOption( 'field_name' ), '=', $this->getOption( 'value' ) );
