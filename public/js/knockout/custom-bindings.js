@@ -16,7 +16,7 @@
 			//so that it doesn't keep reopening.
 			if (viewModel.lastItem === null)
 			{
-				$tableContainer.css('margin-right', 290);
+				$tableContainer.css('margin-right', 505);
 				$element.hide();
 				$child.css('marginLeft', expandWidth + 2);
 			}
@@ -42,7 +42,7 @@
 					$element.hide();
 				});
 
-				$tableContainer.stop().animate({marginRight: 290}, 150, function()
+				$tableContainer.stop().animate({marginRight: 505}, 150, function()
 				{
 					window.admin.resizePage();
 				});
@@ -63,14 +63,14 @@
 	};
 
 	var select2Defaults = {
-			placeholder: adminData.languages['select_options'],
-			formatNoMatches: function(term)
-			{
-				return adminData.languages['no_results'];
-			},
-			width: 'resolve',
-			allowClear: true
-		};
+		placeholder: adminData.languages['select_options'],
+		formatNoMatches: function(term)
+		{
+			return adminData.languages['no_results'];
+		},
+		width: 'resolve',
+		allowClear: true
+	};
 
 	//for select2
 	ko.bindingHandlers.select2 = {
@@ -182,12 +182,12 @@
 					data: function(term, page)
 					{
 						var data = {
-								term: term,
-								page: page,
-								field: options.field,
-								type: options.type,
-								constraints: {}
-							};
+							term: term,
+							page: page,
+							field: options.field,
+							type: options.type,
+							constraints: {}
+						};
 
 						if (data.type === 'edit')
 						{
@@ -634,7 +634,7 @@
 	/**
 	 * The markdown binding is attached to the field next a markdown textarea
 	 */
-	 ko.bindingHandlers.markdown = {
+	ko.bindingHandlers.markdown = {
 		update: function (element, valueAccessor, allBindingsAccessor, context)
 		{
 			//handle programmatic updates to the observable
@@ -649,7 +649,7 @@
 				$(element).html(markdown.toHTML(value.toString()));
 			}
 		}
-	 };
+	};
 
 	/**
 	 * The enumText binding converts a value and an options array to a "Label (value)" readable format

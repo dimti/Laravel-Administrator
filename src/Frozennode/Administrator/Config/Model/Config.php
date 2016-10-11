@@ -37,7 +37,7 @@ class Config extends ConfigBase implements ConfigInterface {
 		'actions' => array(),
 		'global_actions' => array(),
 		'sort' => array(),
-		'form_width' => 285,
+		'form_width' => 500,
 		'link' => null,
 		'rules' => false,
 		'messages' => false,

@@ -828,7 +828,7 @@
 				var filters = [],
 					observables = ['value', 'min_value', 'max_value'];
 
-				$.each(window.admin.filtersViewModel.filters, function(ind, el)
+				$.each(window.admin.filtersViewModel.filtersWithoutRows, function(ind, el)
 				{
 					var filter = {
 						field_name: el.field_name,
@@ -877,14 +877,14 @@
 				var self = this;
 
 				//first we will iterate over the filters and update them if any exist
-				$.each(window.admin.filtersViewModel.filters, function(ind, filter)
+				$.each(window.admin.filtersViewModel.filtersWithoutRows, function(ind, filter)
 				{
 					var fieldIndex = ind,
 						fieldName = filter.field_name;
 
 					if ((!filter.constraints || !filter.constraints.length) && filter.self_relationship)
 					{
-						window.admin.filtersViewModel.filters[fieldIndex].loadingOptions(true);
+						window.admin.filtersViewModel.filtersWithoutRows[fieldIndex].loadingOptions(true);
 
 						$.ajax({
 							url: base_url + self.modelName() + '/update_options',
@@ -897,7 +897,7 @@
 							}]},
 							complete: function()
 							{
-								window.admin.filtersViewModel.filters[fieldIndex].loadingOptions(false);
+								window.admin.filtersViewModel.filtersWithoutRows[fieldIndex].loadingOptions(false);
 							},
 							success: function(response)
 							{
@@ -1032,7 +1032,11 @@
 		 */
 		prepareFilters: function()
 		{
-			var filters = [];
+			var filters = [],
+				rows = [],
+				row = [],
+				isOpenedFirstCol = false
+				;
 
 			$.each(adminData.filters, function(ind, filter)
 			{
@@ -1056,9 +1060,23 @@
 				filter.field_id = 'filter_field_' + filter.field_name;
 
 				filters.push(filter);
+
+				row.push(filter);
+
+				if (!isOpenedFirstCol && typeof(filter.column) !== 'undefined' && filter.column == 'first') {
+					isOpenedFirstCol = true;
+				}
+
+				if ( !isOpenedFirstCol || (typeof(filter.column) !== 'undefined' && filter.column == 'last') ) {
+					isOpenedFirstCol = false;
+					rows.push(row);
+					row = [];
+				}
 			});
 
-			return filters;
+			this.filtersViewModel.filtersWithoutRows = filters;
+
+			return rows;
 		},
 
 		/**
@@ -1175,17 +1193,17 @@
 				};
 
 			//iterate over filters
-			$.each(self.filtersViewModel.filters, function(ind, filter)
+			$.each(self.filtersViewModel.filtersWithoutRows, function(ind, filter)
 			{
 				//subscribe to the value field
-				self.filtersViewModel.filters[ind].value.subscribe(function(val)
+				self.filtersViewModel.filtersWithoutRows[ind].value.subscribe(function(val)
 				{
 					//if this is an id field, make sure it's an integer
-					if (self.filtersViewModel.filters[ind].type === 'key')
+					if (self.filtersViewModel.filtersWithoutRows[ind].type === 'key')
 					{
 						var intVal = isNaN(parseInt(val)) ? '' : parseInt(val);
 
-						self.filtersViewModel.filters[ind].value(intVal);
+						self.filtersViewModel.filtersWithoutRows[ind].value(intVal);
 					}
 
 					//update the rows now that we've got new filters
@@ -1195,11 +1213,11 @@
 				//check if there's a min and max value. if so, subscribe to those as well
 				if ('min_value' in filter)
 				{
-					self.filtersViewModel.filters[ind].min_value.subscribe(runFilter);
+					self.filtersViewModel.filtersWithoutRows[ind].min_value.subscribe(runFilter);
 				}
 				if ('max_value' in filter)
 				{
-					self.filtersViewModel.filters[ind].max_value.subscribe(runFilter);
+					self.filtersViewModel.filtersWithoutRows[ind].max_value.subscribe(runFilter);
 				}
 			});
 

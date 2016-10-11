@@ -1182,9 +1182,8 @@ body {
 }
 #admin_page div#sidebar {
   float: right;
-  margin-right: 13px;
   margin-top: 60px;
-  width: 245px;
+  width: 495px;
 }
 #admin_page div#sidebar h2 {
   color: #444;
