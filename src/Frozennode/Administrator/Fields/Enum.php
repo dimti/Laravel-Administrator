@@ -39,7 +39,7 @@ class Enum extends Field {
 		{
 			$options['options'][] = array(
 				'id' => $isAssocArr ? $val : $text,
-				'text' => $text,
+				'text' => '' . $text,
 			);
 		}
 
