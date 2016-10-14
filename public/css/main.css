@@ -1221,7 +1221,7 @@ body {
   display: block;
 }
 #admin_page div#sidebar div.filters .field > div.min_max input[type=text] {
-  width: 87px;
+  width: 45%;
 }
 #admin_page div#sidebar div.filters .field > div.min_max span.symbol {
   position: absolute;

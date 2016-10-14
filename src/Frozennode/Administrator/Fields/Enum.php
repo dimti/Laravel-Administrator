@@ -30,6 +30,12 @@ class Enum extends Field {
 			$model = $this->config->getDataModel();
 
 			$dataOptions = $model->{$dataOptions}();
+
+			if ( !$dataOptions ) {
+				$dataOptions = [
+					trans('Not found any values'),
+				];
+			}
 		}
 
 		$isAssocArr = !array_key_exists(0, $dataOptions);
