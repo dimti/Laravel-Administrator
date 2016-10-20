@@ -280,7 +280,7 @@
 .editForm div.field > div select,
 .editForm div.field > div input[type=hidden],
 .editForm div.field > div .select2-container {
-  width: 226px;
+  width: 100%;
 }
 .editForm div.field > div div.characters_left {
   position: absolute;
@@ -457,7 +457,7 @@
 #settings_page form.settings_form div.field > div select,
 #settings_page form.settings_form div.field > div input[type=hidden],
 #settings_page form.settings_form div.field > div .select2-container {
-  width: 226px;
+  width: 100%;
 }
 #settings_page form.settings_form div.field > div div.characters_left {
   position: absolute;
@@ -1531,6 +1531,9 @@ body {
   border-bottom: 1px solid #e8e8e8;
   vertical-align: top;
 }
+#admin_page #content div.table_container table.results tr.result td.right {
+  text-align: right;
+}
 #admin_page #content div.table_container table.results tr.result.even td {
   background: #f4f5f5;
 }
@@ -1644,7 +1647,7 @@ body {
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div select,
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div input[type=hidden],
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div .select2-container {
-  width: 226px;
+  width: 100%;
 }
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div div.characters_left {
   position: absolute;

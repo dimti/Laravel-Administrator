@@ -13,6 +13,9 @@
 
 	<div class="ui small form">
 	<!-- ko foreach: editFields -->
+		<!-- ko if: $data[0].header -->
+			<div class="ui header" data-bind="text: $data[0].header"></div>
+		<!-- /ko -->
 		<div class="equal width fields">
 		<!-- ko foreach: $data -->
 			<!-- ko if: $data && ( $root[$root.primaryKey]() || editable ) && visible -->

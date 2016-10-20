@@ -138,5 +138,6 @@ View::composer(array('administrator::layouts.default'), function($view)
 		'semantic-grid' => asset('assets/semantic-ui/components/grid.min.css'),
 		'semantic-form' => asset('assets/semantic-ui/components/form.min.css'),
 		'semantic-input' => asset('assets/semantic-ui/components/input.min.css'),
+		'semantic-header' => asset('assets/semantic-ui/components/header.min.css'),
 	];
 });

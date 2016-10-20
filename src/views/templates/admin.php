@@ -63,7 +63,8 @@
 							css: {result: true, even: $index() % 2 == 1, odd: $index() % 2 != 1,
 									selected: $data[$root.primaryKey].raw == $root.itemLoadingId()}">
 					<!-- ko foreach: $root.columns -->
-						<td data-bind="html: $parentContext.$data[column_name].rendered, visible: visible"></td>
+						<td data-bind="html: $parentContext.$data[column_name].rendered, visible: visible,
+								css: {right: adminData.column_model[$index()].right}"></td>
 					<!-- /ko -->
 				</tr>
 			<!-- /ko -->

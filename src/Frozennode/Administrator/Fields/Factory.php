@@ -464,6 +464,7 @@ class Factory {
 			else
 			{
 				//if this is a collection, convert it to an array
+				//TODO: This code permanent call mutators of all properties
 				if (is_a($model->$name, 'Illuminate\Database\Eloquent\Collection'))
 				{
 					$dataModel[$name] = $model->$name->toArray();
