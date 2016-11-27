@@ -47,7 +47,7 @@
 	'sorted-asc': (column_name == $root.sortOptions.field() || sort_field == $root.sortOptions.field()) && $root.sortOptions.direction() === 'asc',
 	'sorted-desc': (column_name == $root.sortOptions.field() || sort_field == $root.sortOptions.field()) && $root.sortOptions.direction() === 'desc'}">
 						<!-- ko if: sortable -->
-							<div data-bind="click: function() {$root.setSortOptions(sort_field ? sort_field : column_name)}, text: title"></div>
+							<div data-bind="click: function() {$root.setSortOptions(sort_field ? sort_field : column_name)}, text: (typeof title !== 'undefined' ? title : column_name)"></div>
 						<!-- /ko -->
 
 						<!-- ko ifnot: sortable -->

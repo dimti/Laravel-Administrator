@@ -2,6 +2,7 @@
 namespace Frozennode\Administrator\Fields\Relationships;
 
 use Frozennode\Administrator\Fields\Field;
+use Illuminate\Support\Collection;
 
 abstract class Relationship extends Field {
 
@@ -73,6 +74,9 @@ abstract class Relationship extends Field {
 
 		//make sure the options filter is set up
 		$options['options_filter'] = $this->validator->arrayGet($options, 'options_filter') ?: function() {};
+
+		//make sure the options filter is set up
+		$options['options_order'] = $this->validator->arrayGet($options, 'options_order') ?: null;
 
 		//set up and check the constraints
 		$this->setUpConstraints($options);
@@ -148,7 +152,13 @@ abstract class Relationship extends Field {
 			$options['options_filter']($query);
 
 			//get the items
+			/**
+			 * @var $items Collection
+			 */
 			$items = $query->get();
+
+			//run the options filter
+			$items->sort($options['options_order']);
 		}
 		//otherwise if there are relationship items, we need them in the initial options list
 		else if ($relationshipItems = $relationship->get())

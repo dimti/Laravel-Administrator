@@ -619,8 +619,17 @@ class Factory {
 		$filter = $fieldObject->getOption('options_filter');
 		$filter($query);
 
+		$items = $query->get();
+
+		//perform any user-supplied options filter
+		$order = $fieldObject->getOption('options_order');
+
+		if ($order) {
+			$items->sort($order);
+		}
+
 		//finally we can return the options
-		return $this->formatSelectOptions($fieldObject, $query->get());
+		return $this->formatSelectOptions($fieldObject, $items);
 	}
 
 	/**

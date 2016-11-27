@@ -199,8 +199,8 @@ class DataTable {
 		$sql = "SELECT COUNT({$model->getKeyName()}) AS aggregate FROM ({$querySql}) AS agg";
 
 		//then perform the count query
-		$results = $countQuery->getConnection()->select($sql, $queryBindings);
-		$numRows = is_array($results[0]) ? $results[0]['aggregate'] : $results[0]->aggregate;
+//		$results = $countQuery->getConnection()->select($querySql, $queryBindings);
+		$numRows = $countQuery->count();
 		$page = (int) $page;
 		$last = (int) ceil($numRows / $this->rowsPerPage);
 
