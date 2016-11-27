@@ -588,6 +588,12 @@
 #settings_page form.settings_form div.image_container input[type=button] {
   right: -30px !important;
 }
+#settings_page form.settings_form div.text {
+  width: 90%;
+}
+#settings_page form.settings_form div.text input {
+  width: 100%;
+}
 /* CSS Resets */
 html,
 body,
@@ -1862,4 +1868,3 @@ body {
     display: none !important;
   }
 }
-/*# sourceMappingURL=main.css.map */
