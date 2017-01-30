@@ -1803,10 +1803,10 @@ body {
     left: 0;
     width: 100% !important;
     z-index: 805;
+    overflow-y: auto;
   }
   #wrapper #content div.item_edit_container div.item_edit {
     width: 100% !important;
-    height: 96%;
   }
   #wrapper #content div.item_edit_container div.item_edit form.edit_form > div {
     display: inline-block;
