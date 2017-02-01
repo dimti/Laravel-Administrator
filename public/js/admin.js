@@ -303,7 +303,7 @@
 
 				$.ajax({
 					url: base_url +  self.modelName() + '/' + self[self.primaryKey]() + '/save',
-					data: saveData,
+					data: Object.assign(saveData, self.imageOriginalNames),
 					dataType: 'json',
 					type: 'POST',
 					complete: function()

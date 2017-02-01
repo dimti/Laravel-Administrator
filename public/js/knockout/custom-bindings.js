@@ -683,6 +683,8 @@
 				viewModel = context.$root,
 				filters = options.image ? [{title: 'Image files', extensions: 'jpg,jpeg,gif,png'}] : [];
 
+			viewModel.imageOriginalNames = {};
+
 			viewModel[cacheName] = new plupload.Uploader({
 				runtimes: 'html5,flash,silverlight,gears,browserplus',
 				browse_button: cacheName,
@@ -731,6 +733,7 @@
 					//success
 					//iterate over the files until we find it and then set the proper fields
 					viewModel[options.field](data.filename);
+					viewModel.imageOriginalNames[options.field + '_original_name'] = data.original_name;
 				} else {
 					//error
 					alert(data.errors);
