@@ -116,9 +116,14 @@ class DataTable {
 		//get things going by grouping the set
 		$table = $model->getTable();
 		$keyName = $model->getKeyName();
-		$countQuery = $query = $model->groupBy($table . '.' . $keyName);
 
-		//get the Illuminate\Database\Query\Builder instance and set up the count query
+		$query = $model->groupBy($table . '.' . $keyName);
+
+		$countQuery = $model->newQuery();
+		$countQuery->select($table . '.' . $keyName);
+		$countQuery->distinct();
+
+			//get the Illuminate\Database\Query\Builder instance and set up the count query
 		$dbQuery = $query->getQuery();
 //		$countQuery = $dbQuery->getConnection()->table($table)->groupBy($table . '.' . $keyName);
 
@@ -190,16 +195,6 @@ class DataTable {
 	 */
 	public function performCountQuery( $countQuery, $querySql, $queryBindings, $page)
 	{
-		//grab the model instance
-		$model = $this->config->getDataModel();
-
-		$querySql = str_replace('*', $model->getKeyName(), $querySql);
-
-		//then wrap the inner table and perform the count
-		$sql = "SELECT COUNT({$model->getKeyName()}) AS aggregate FROM ({$querySql}) AS agg";
-
-		//then perform the count query
-//		$results = $countQuery->getConnection()->select($querySql, $queryBindings);
 		$numRows = $countQuery->count();
 		$page = (int) $page;
 		$last = (int) ceil($numRows / $this->rowsPerPage);
