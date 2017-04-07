@@ -71,6 +71,7 @@ class BelongsTo extends Relationship {
 			//if the model method doesn't exist for any of the pieces along the way, exit out
 			if (!method_exists($models[$i], $rel) || !is_a($models[$i]->{$rel}(), self::BELONGS_TO))
 			{
+				//TODO: If relation method return not relation or null. That is infitiny cycle
 				throw new \InvalidArgumentException("The '" . $this->getOption('column_name') . "' column in your " . $this->config->getOption('name') .
 					" model configuration needs to be either a belongsTo relationship method name or a sequence of them connected with a '.'");
 			}

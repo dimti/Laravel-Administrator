@@ -25,6 +25,9 @@ class BelongsToMany extends Relationship {
 		$joins = $where = '';
 		$columnName = $this->getOption('column_name');
 
+		/**
+		 * @var $relationship \Illuminate\Database\Eloquent\Relations\BelongsToMany
+		 */
 		$relationship = $model->{$this->getOption('relationship')}();
 		$from_table = $this->tablePrefix . $model->getTable();
 		$field_table = $columnName . '_' . $from_table;
@@ -34,9 +37,9 @@ class BelongsToMany extends Relationship {
 		$other_key = $other_model->getKeyName();
 		$int_table = $this->tablePrefix . $relationship->getTable();
 		$int_alias = $columnName . '_' . $int_table;
-		$column1 = explode('.', $relationship->getForeignKey());
+		$column1 = explode('.', $relationship->getQualifiedForeignKeyName());
 		$column1 = $column1[1];
-		$column2 = explode('.', $relationship->getOtherKey());
+		$column2 = explode('.', $relationship->getQualifiedRelatedKeyName());
 		$column2 = $column2[1];
 		$joins .= ' LEFT JOIN '.$int_table.' AS '.$int_alias.' ON '.$int_alias.'.'.$column1.' = '.$field_table.'.'.$model->getKeyName()
 				.' LEFT JOIN '.$other_table.' AS '.$other_alias.' ON '.$other_alias.'.'.$other_key.' = '.$int_alias.'.'.$column2;
