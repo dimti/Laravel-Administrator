@@ -24,12 +24,15 @@ class BelongsTo extends Relationship {
 		$options = $this->suppliedOptions;
 
 		$model = $this->config->getDataModel();
+		/**
+		 * @var $relationship \Illuminate\Database\Eloquent\Relations\BelongsToMany
+		 */
 		$relationship = $model->{$options['field_name']}();
 		$relatedModel = $relationship->getRelated();
 
 		$options['table'] = $relatedModel->getTable();
 		$options['column'] = $relatedModel->getKeyName();
-		$options['foreign_key'] = $relationship->getForeignKey();
+		$options['foreign_key'] = $relationship->getQualifiedForeignKeyName();
 
 		$this->suppliedOptions = $options;
 	}

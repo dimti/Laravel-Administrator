@@ -32,10 +32,13 @@ class HasMany extends HasOneOrMany {
 		// $model is the model for which the above answers should be associated to
 		$fieldName = $this->getOption('field_name');
 		$input = $input ? explode(',', $input) : array();
+		/**
+		 * @var $relationship \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+		 */
 		$relationship = $model->{$fieldName}();
 
 		// get the plain foreign key so we can set it to null:
-		$fkey = $relationship->getPlainForeignKey();
+		$fkey = $relationship->getForeignKeyName();
 
 		$relatedObjectClass = get_class($relationship->getRelated());
 

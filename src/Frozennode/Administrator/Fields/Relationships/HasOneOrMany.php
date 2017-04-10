@@ -25,11 +25,14 @@ class HasOneOrMany extends Relationship {
 		$options = $this->suppliedOptions;
 
 		$model = $this->config->getDataModel();
+		/**
+		 * @var $relationship \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+		 */
 		$relationship = $model->{$options['field_name']}();
 		$related_model = $relationship->getRelated();
 
 		$options['table'] = $related_model->getTable();
-		$options['column'] = $relationship->getPlainForeignKey();
+		$options['column'] = $relationship->getForeignKeyName();
 
 		$this->suppliedOptions = $options;
 	}
