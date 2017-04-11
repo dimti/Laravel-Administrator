@@ -3,6 +3,7 @@ namespace Frozennode\Administrator\Fields\Relationships;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Query\Builder;
 
 class BelongsToMany extends Relationship {
 
@@ -53,6 +54,9 @@ class BelongsToMany extends Relationship {
 	{
 		$input = $input ? explode(',', $input) : array();
 		$fieldName = $this->getOption('field_name');
+		/**
+		 * @var $relationship \Illuminate\Database\Eloquent\Relations\BelongsToMany
+		 */
 		$relationship = $model->{$fieldName}();
 
 		//if this field is sortable, delete all the old records and insert the new ones one at a time
@@ -70,7 +74,28 @@ class BelongsToMany extends Relationship {
 		else
 		{
 			//elsewise the order doesn't matter, so use sync
-			$relationship->sync($input);
+			$inputWithPivotAttributes = [];
+
+			foreach ($input as $id) {
+				$inputWithPivotAttributes[$id] = [];
+
+				/**
+				 * @var $query Builder
+				 */
+				$query = $relationship->getBaseQuery();
+
+				$pivots = $query->wheres;
+
+				array_shift($pivots);
+
+				foreach ($pivots as $whereDefinition) {
+					$column = explode('.', $whereDefinition['column'])[1];
+
+					$inputWithPivotAttributes[$id][$column] = $whereDefinition['value'];
+				}
+			}
+
+			$relationship->sync($inputWithPivotAttributes);
 		}
 
 		//unset the attribute on the model
