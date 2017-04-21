@@ -76,7 +76,7 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array  $rules
 	 * @return array
 	 */
-	protected function explodeRules(array $rules)
+	protected function explodeRules($rules)
 	{
 		foreach ($rules as $key => $rule) {
 			if (Str::contains($key, '*')) {

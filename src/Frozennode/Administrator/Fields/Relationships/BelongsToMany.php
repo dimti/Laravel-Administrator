@@ -35,8 +35,14 @@ class BelongsToMany extends Relationship {
 		$relatedModel = $relationship->getRelated();
 
 		$options['table'] = $relationship->getTable();
-		$options['column'] = $relationship->getQualifiedForeignKeyName();
-		$options['column2'] = $relationship->getQualifiedRelatedKeyName();
+		$options['column'] = method_exists($relationship, 'getForeignKey')
+			? $relationship->getForeignKey()
+			: $relationship->getQualifiedForeignKeyName()
+		;
+		$options['column2'] = method_exists($relationship, 'getOtherKey')
+			? $relationship->getOtherKey()
+			: $relationship->getQualifiedRelatedKeyName()
+		;
 		$options['foreign_key'] = $relatedModel->getKeyName();
 
 		$this->suppliedOptions = $options;

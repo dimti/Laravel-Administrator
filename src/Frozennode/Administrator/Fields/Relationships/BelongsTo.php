@@ -32,7 +32,10 @@ class BelongsTo extends Relationship {
 
 		$options['table'] = $relatedModel->getTable();
 		$options['column'] = $relatedModel->getKeyName();
-		$options['foreign_key'] = $relationship->getQualifiedForeignKeyName();
+		$options['foreign_key'] = method_exists($relationship, 'getForeignKey')
+			? $relationship->getForeignKey()
+			: $relationship->getQualifiedForeignKeyName()
+		;
 
 		$this->suppliedOptions = $options;
 	}

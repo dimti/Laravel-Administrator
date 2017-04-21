@@ -32,7 +32,10 @@ class HasOneOrMany extends Relationship {
 		$related_model = $relationship->getRelated();
 
 		$options['table'] = $related_model->getTable();
-		$options['column'] = $relationship->getForeignKeyName();
+		$options['column'] = method_exists($relationship, 'getPlainForeignKey')
+			? $relationship->getPlainForeignKey()
+			: $relationship->getForeignKeyName()
+		;
 
 		$this->suppliedOptions = $options;
 	}

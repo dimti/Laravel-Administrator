@@ -23,9 +23,14 @@ class HasOneOrMany extends Relationship {
 		//grab the existing where clauses that the user may have set on the relationship
 		$relationshipWheres = $this->getRelationshipWheres($relationship, $field_table);
 
+		$fkey = method_exists($relationship, 'getPlainForeignKey')
+			? $relationship->getPlainForeignKey()
+			: $relationship->getForeignKeyName()
+		;
+
 		$where = $this->tablePrefix . $relationship->getQualifiedParentKeyName() .
 				' = ' .
-				$field_table . '.' . $relationship->getForeignKeyName()
+				$field_table . '.' . $fkey
 				. ($relationshipWheres ? ' AND ' . $relationshipWheres : '');
 
 		$selects[] = $this->db->raw("(SELECT " . $this->getOption('select') . "
