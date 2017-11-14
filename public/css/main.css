@@ -289,9 +289,9 @@
   font-size: 11px;
 }
 .editForm div.field > div.number span.symbol {
+  margin-left: 4px;
   position: absolute;
-  top: 27px;
-  left: -15px;
+  top: 9px;
 }
 .editForm div.field > div.key label,
 .editForm div.field > div.bool label {
@@ -466,9 +466,9 @@
   font-size: 11px;
 }
 #settings_page form.settings_form div.field > div.number span.symbol {
+  margin-left: 4px;
   position: absolute;
-  top: 27px;
-  left: -15px;
+  top: 9px;
 }
 #settings_page form.settings_form div.field > div.key label,
 #settings_page form.settings_form div.field > div.bool label {
@@ -1662,9 +1662,9 @@ body {
   font-size: 11px;
 }
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div.number span.symbol {
+  margin-left: 4px;
   position: absolute;
-  top: 27px;
-  left: -15px;
+  top: 9px;
 }
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div.key label,
 #admin_page #content div.item_edit_container div.item_edit form.edit_form div.field > div.bool label {

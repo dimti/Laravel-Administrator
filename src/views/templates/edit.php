@@ -144,16 +144,16 @@
 
 					<!-- ko if: type === 'number' -->
 						<!-- ko if: editable -->
-							<span class="symbol" data-bind="text: symbol"></span>
 							<input type="text" data-bind="attr: {disabled: $root.freezeForm, id: field_id}, value: $root[field_name],
 														number: {decimals: decimals, key: field_name, thousandsSeparator: thousands_separator,
 																decimalSeparator: decimal_separator}" />
+							<span class="symbol" data-bind="text: symbol"></span>
 						<!-- /ko -->
 						<!-- ko ifnot: editable -->
-							<span data-bind="text: symbol"></span>
 							<span class="uneditable" data-bind="value: $root[field_name], number: {decimals: decimals, key: field_name,
 																							thousandsSeparator: thousands_separator,
 																							decimalSeparator: decimal_separator}"></span>
+							<span data-bind="text: symbol"></span>
 						<!-- /ko -->
 					<!-- /ko -->
 
