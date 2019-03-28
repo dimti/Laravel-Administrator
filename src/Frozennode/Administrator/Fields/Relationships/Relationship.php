@@ -100,7 +100,7 @@ abstract class Relationship extends Field {
 		$model = $this->config->getDataModel();
 
 		//set up and check the constraints
-		if (sizeof($constraints))
+		if ($constraints)
 		{
 			$validConstraints = array();
 
